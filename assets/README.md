@@ -1,32 +1,115 @@
 # Restful-booker-assets
 
-The assets API is responsible for serving the UI assets to a browser to give users easy access to the restful-booker-platform.
+**assets API**は、ユーザーが**restful-booker-platform**に簡単にアクセスできるように、ブラウザにUIアセットを提供する役割を担っています。
 
-The assets folder is broken into two sections: ```api``` and ```js```. The ```js``` folder contains all the HTML, CSS, JavaScript and Images that make up the front end assets to create a single page application which enables UI components to be individually checked before builds. The contents of the ```js``` folder are built using ```webpack``` that bundles the frontend assets and sends them to the ```api```. The ```api``` folder contains code for the assets API that contains one endpoint that serves the frontend assets when requested. The rest of the assets part of the application is then run within the browser with JavaScript taking responsibility to create the HTML.
+**assets**フォルダは、`api`と`js`の2つのセクションに分かれています。`js`フォルダには、シングルページアプリケーションを構築するためのHTML、CSS、JavaScript、および画像が含まれており、ビルド前にUIコンポーネントを個別にチェックすることができます。`js`フォルダの内容は、**webpack**を使用してフロントエンドアセットをバンドルし、`api`フォルダに送信されます。`api`フォルダには、要求されたときにフロントエンドアセットを提供するエンドポイントを含む**assets API**のコードが含まれています。アプリケーションのその他のアセット部分は、ブラウザ内で実行され、JavaScriptがHTMLの作成を担当します。
 
-## Building and running
+## ビルドと実行
 
-The building of the assets API is done in two stages.
+**assets API**のビルドは、2段階で行われます。
 
-1. The frontend assets should be built first so that they are compiled and sent to the ```api``` folder. To do this, navigate to the ```js``` folder and run ```npm run build``` 
-2. Once the frontend assets are built. Navigate to the ```api``` folder and run ```mvn install``` (Note: Do not run ```mvn clean install``` as this will remove the frontend assets)
+1. フロントエンドアセットを最初にビルドして、コンパイルされ`api`フォルダに送信されるようにします。これを行うには、`js`フォルダに移動し、以下のコマンドを実行します：
 
-Once built run ```java -jar target/restful-booker-platform-ui-1.0-SNAPSHOT.jar``` in the ```api``` folder. This will start up the API, allowing you to access the UI.
+    ```bash
+    npm run build
+    ```
 
-## Running checks
+2. フロントエンドアセットがビルドされたら、`api`フォルダに移動し、以下のコマンドを実行します（注：`mvn clean install`を実行しないでください。これによりフロントエンドアセットが削除されます）。
 
-### JS module 
+    ```bash
+    mvn install
+    ```
 
-To run the ```js``` checks you will need to install Jest globally ```npm install jest -g``` before running either ```npm test``` or ```jest```
+ビルドが完了したら、`api`フォルダ内で以下のコマンドを実行してアプリケーションを起動します。これにより、APIが起動し、UIにアクセスできるようになります。
 
-### API module
+```bash
+java -jar target/restful-booker-platform-ui-1.0-SNAPSHOT.jar
+```
 
-The ```api``` module contains visual checks that use [Applitools](https://applitools.com/) to run the visual checking. Therefore you will need to set the following environmental variable with your [Applitools](https://applitools.com/) API key:
+## チェックの実行
 
-```APPLITOOLS_API_KEY = MY_API_KEY_ABC1234```
+### JSモジュール
 
-With that set you can then run ```mvn verify```
+`js`のチェックを実行するには、グローバルに**Jest**をインストールする必要があります。以下のコマンドを実行してください：
 
-## Documentation
+```bash
+npm install jest -g
+```
 
-You can also find out the health of the application by accessing ```http://localhost:3003/actuator/health```. Finally, to access the APIs logfiles, head to ```http://localhost:3003/actuator/logfile```
+その後、以下のいずれかのコマンドを実行してテストを開始します：
+
+```bash
+npm test
+```
+
+または
+
+```bash
+jest
+```
+
+### APIモジュール
+
+`api`モジュールには、**[Applitools](https://applitools.com/)**を使用してビジュアルチェックを実行するビジュアルチェックが含まれています。そのため、以下の環境変数に**[Applitools](https://applitools.com/)**のAPIキーを設定する必要があります：
+
+```bash
+APPLITOOLS_API_KEY=MY_API_KEY_ABC1234
+```
+
+この設定が完了したら、以下のコマンドを実行してビジュアルチェックを実行できます：
+
+```bash
+mvn verify
+```
+
+## ドキュメント
+
+アプリケーションのヘルスチェックは、以下のURLにアクセスすることで確認できます：
+
+```
+http://localhost:3003/actuator/health
+```
+
+最後に、APIのログファイルにアクセスするには、以下のURLにアクセスしてください：
+
+```
+http://localhost:3003/actuator/logfile
+```
+
+---
+
+**補足情報:**
+
+- **フォルダ構造の理解**:
+  - `api`フォルダ: サーバーサイドのAPIエンドポイントを提供。
+  - `js`フォルダ: フロントエンドのアセット（HTML、CSS、JavaScript、画像）を管理。
+
+- **ビルドプロセス**:
+  - フロントエンドアセットのビルドは**webpack**を使用。
+  - フロントエンドとバックエンドのビルドを分けて行うことで、効率的な開発とデバッグが可能。
+
+- **テストの重要性**:
+  - **Jest**を使用したJavaScriptのユニットテスト。
+  - **Applitools**を使用したビジュアルテストで、UIの一貫性を保つ。
+
+- **環境変数の設定**:
+  - `APPLITOOLS_API_KEY`は**Applitools**のサービスを利用するために必須。
+  - 環境変数の設定はセキュリティ上の理由から慎重に行うこと。
+
+---
+
+**トラブルシューティング:**
+
+- **ビルドエラーが発生する場合**:
+  - 必要な依存関係が正しくインストールされているか確認。
+  - `JAVA_HOME`や`MAVEN_HOME`などの環境変数が正しく設定されているか確認。
+
+- **アプリケーションにアクセスできない場合**:
+  - サーバーが正しく起動しているか確認。
+  - ファイアウォール設定やポートの競合を確認。
+
+- **テストが失敗する場合**:
+  - テスト環境が正しく構築されているか確認。
+  - **Applitools**のAPIキーが正しく設定されているか確認。
+
+---

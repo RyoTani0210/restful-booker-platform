@@ -1,19 +1,50 @@
 # Restful-booker-report
 
-Report is responsible for collating information about the different rooms their bookings.
+**Report**は、異なる部屋の予約に関する情報を収集する役割を担っています。
 
-## Running the checks
+## チェックの実行
 
-To only run the checks run ```mvn clean test```
+チェックのみを実行するには、以下のコマンドを実行してください：
 
-## Building the API
+```bash
+mvn clean test
+```
 
-To build this API run ```mvn clean package``` this will run the tests and then create a .JAR file that can be run.
+## APIのビルド
 
-## Running the API
+このAPIをビルドするには、以下のコマンドを実行してください。これによりテストが実行され、その後実行可能な`.JAR`ファイルが作成されます：
 
-To run the API, ensure that you have first built it and then run ```java -jar target/restful-booker-platform-report-1.0-SNAPSHOT.jar```. This will start up the API, allowing you to access it's endpoints.
+```bash
+mvn clean package
+```
 
-## Documentation
+## APIの実行
 
-To access this API's endpoint documentation, head to ```http://localhost:3005/report/swagger-ui/index.html```. You can also find out the health of the application by accessing ```http://localhost:3005/report/actuator/health```. Finally, to access the APIs logfiles, head to ```http://localhost:3005/report/actuator/logfile```
+APIを実行するには、まずビルドを行い、次に以下のコマンドを実行してください：
+
+```bash
+java -jar target/restful-booker-platform-report-1.0-SNAPSHOT.jar
+```
+
+これによりAPIが起動し、エンドポイントにアクセスできるようになります。
+
+## ドキュメント
+
+このAPIのエンドポイントドキュメントにアクセスするには、以下のURLに移動してください：
+
+```
+http://localhost:3005/report/swagger-ui/index.html
+```
+
+また、アプリケーションのヘルス状態を確認するには、以下のURLにアクセスします：
+
+```
+http://localhost:3005/report/actuator/health
+```
+
+最後に、APIのログファイルにアクセスするには、以下のURLに移動してください：
+
+```
+http://localhost:3005/report/actuator/logfile
+```
+```

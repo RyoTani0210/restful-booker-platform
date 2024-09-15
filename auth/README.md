@@ -1,19 +1,108 @@
 # Restful-booker-auth
 
-Auth is responsbile for creating, verifying and destroying tokens that are used by other services to check whether they are able to create, update or delete content.
+**Auth**は、他のサービスがコンテンツの作成、更新、削除が可能かどうかを確認するために使用されるトークンの作成、検証、破棄を担当します。
 
-## Running the checks
+## チェックの実行
 
-To only run the checks run ```mvn clean test```
+チェックのみを実行するには、以下のコマンドを実行してください：
 
-## Building the API
+```bash
+mvn clean test
+```
 
-To build this API run ```mvn clean package``` this will run the tests and then create a .JAR file that can be run.
+## APIのビルド
 
-## Running the API
+このAPIをビルドするには、以下のコマンドを実行します。このコマンドはテストを実行し、その後実行可能な`.JAR`ファイルを作成します：
 
-To run the API, ensure that you have first built it and then run ```java -jar target/restful-booker-platform-auth-*-SNAPSHOT.jar```. This will start up the API, allowing you to access it's endpoints.
+```bash
+mvn clean package
+```
 
-## Documentation
+## APIの実行
 
-To access this API's endpoint documentation, head to ```http://localhost:3004/auth/swagger-ui/index.html```. You can also find out the health of the application by accessing ```http://localhost:3004/auth/actuator/health```. Finally, to access the APIs logfiles, head to ```http://localhost:3004/auth/actuator/logfile```
+APIを実行するには、まずビルドを行い、その後以下のコマンドを実行します：
+
+```bash
+java -jar target/restful-booker-platform-auth-*-SNAPSHOT.jar
+```
+
+このコマンドによりAPIが起動し、エンドポイントにアクセスできるようになります。
+
+## ドキュメント
+
+このAPIのエンドポイントドキュメントにアクセスするには、以下のURLに移動してください：
+
+```
+http://localhost:3004/auth/swagger-ui/index.html
+```
+
+また、アプリケーションのヘルスチェックを確認するには、以下のURLにアクセスします：
+
+```
+http://localhost:3004/auth/actuator/health
+```
+
+最後に、APIのログファイルにアクセスするには、以下のURLに移動してください：
+
+```
+http://localhost:3004/auth/actuator/logfile
+```
+
+---
+
+**補足情報:**
+
+- **Authモジュールの役割**:
+  - 他のサービスが適切な権限で操作を行えるように、トークンの管理を行います。
+  - トークンのライフサイクル管理（作成、検証、破棄）を担当します。
+
+- **ビルドプロセス**:
+  - `mvn clean package` コマンドは、プロジェクトのクリーンアップとパッケージングを行います。テストが成功した後、実行可能なJARファイルが生成されます。
+
+- **実行手順**:
+  - ビルドが完了したら、生成されたJARファイルを実行することでAPIが起動します。これにより、他のサービスからのトークン管理リクエストに対応できるようになります。
+
+- **ドキュメントアクセス**:
+  - **Swagger UI**を使用して、APIのエンドポイントや使用方法を視覚的に確認できます。
+  - **Actuatorエンドポイント**を使用して、アプリケーションのヘルス状態やログファイルにアクセスできます。
+
+- **環境変数の設定**:
+  - 必要に応じて、環境変数（例：データベース接続情報やセキュリティ設定）を適切に設定してください。
+
+---
+
+**トラブルシューティング:**
+
+- **ビルドエラーが発生する場合**:
+  - 必要な依存関係が正しくインストールされているか確認してください。
+  - `JAVA_HOME`や`MAVEN_HOME`などの環境変数が正しく設定されているか確認してください。
+
+- **APIにアクセスできない場合**:
+  - サーバーが正しく起動しているか確認してください。
+  - ファイアウォール設定やポートの競合を確認してください。
+  - 指定されたポート（デフォルトは3004）が他のアプリケーションによって使用されていないか確認してください。
+
+- **テストが失敗する場合**:
+  - テスト環境が正しく構築されているか確認してください。
+  - 必要な環境変数や設定ファイルが正しく設定されているか確認してください。
+
+---
+
+**まとめ:**
+
+1. **チェックの実行**:
+   - `mvn clean test` コマンドを使用して、単体テストや統合テストを実行します。
+
+2. **APIのビルド**:
+   - `mvn clean package` コマンドでAPIをビルドし、実行可能なJARファイルを作成します。
+
+3. **APIの実行**:
+   - ビルドが完了した後、生成されたJARファイルを実行してAPIを起動します。
+
+4. **ドキュメントのアクセス**:
+   - Swagger UIやActuatorエンドポイントを使用して、APIのドキュメントやアプリケーションの状態を確認します。
+
+5. **トラブルシューティング**:
+   - ビルドや実行時に問題が発生した場合は、ログファイルやエラーメッセージを確認し、必要な対策を行います。
+
+
