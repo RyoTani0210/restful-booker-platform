@@ -1,57 +1,63 @@
 # restful-booker-platform
-A platform of web services that forms a Bed and Breakfast booking system. The platforms primary purpose is for  training others on how to explore and test web service platforms as well as strategise and implement automation in testing strategies.
 
-## Requirements
-RBP is currently known to work with the following requirements:
+ベッド＆ブレックファストの予約システムを構成する一連のウェブサービスプラットフォームです。このプラットフォームの主な目的は、他者がウェブサービスプラットフォームの探索とテスト、およびテスト戦略における自動化の計画と実装をトレーニングすることです。
 
-- JDK 18.0.2 or higher (Tested with JDK 18)
+## 必要要件
+
+RBPは現在、以下の要件で動作することが確認されています：
+
+- JDK 18.0.2以上（JDK 18でテスト済み）
 - Maven 3.6.3
 - Node 20.9.0
 - NPM 10.1.0
 
-## Building locally
+## ローカルでのビルド
 
-Assuming you have the above requirements in place, to get started open a terminal/command line window and follow these instructions:
+上記の要件を満たしていると仮定して、以下の手順で開始できます。ターミナルまたはコマンドラインウィンドウを開き、以下の指示に従ってください：
 
-1. Clone/Download the repository
-2. Navigate into the restful-booker-platform root folder
-3. Run either ```bash build_locally.sh``` for Linux or Mac or ```build_locally.cmd``` on Windows to build RBP and get it running (It may take a while on the first run as it downloads dependencies)
-4. Navigate to http://localhost:8080 to access the site
+1. リポジトリをクローンまたはダウンロードします。
+2. `restful-booker-platform`のルートフォルダに移動します。
+3. LinuxまたはMacの場合は`build_locally.sh`、Windowsの場合は`build_locally.cmd`を実行して、RBPをビルドして起動します（初回実行時は依存関係をダウンロードするため時間がかかる場合があります）。
+4. ブラウザで`http://localhost:8080`にアクセスしてサイトを表示します。
 
-## Running locally
+## ローカルでの実行
 
-Assuming you have successfully built the application at least once, you can now run the app without having to rebuild the whole application.
+アプリケーションを少なくとも一度正常にビルドしたと仮定して、全体を再ビルドせずにアプリを実行できます。
 
 ### Mac / Linux
-1. To run without end-to-end checks run: ```run_locally.sh```
-2. To run with end-to-end checks run: ```run_locally.sh -e true```
+
+1. エンドツーエンドのチェックなしで実行するには：`run_locally.sh`を実行します。
+2. エンドツーエンドのチェック付きで実行するには：`run_locally.sh -e true`を実行します。
 
 ### Windows
-1. To run without end-to-end checks run: ```run_locally.cmd```
-2. To run with end-to-end checks run: ```run_locally.cmd true```
 
-### Login
-The user login details are:
-* Username: admin
-* Password: password
+1. エンドツーエンドのチェックなしで実行するには：`run_locally.cmd`を実行します。
+2. エンドツーエンドのチェック付きで実行するには：`run_locally.cmd true`を実行します。
 
-## Development
+### ログイン情報
 
-### API details
+ユーザーのログイン情報は以下の通りです：
 
-The details on running checks, building APIs and additional details on documentation for development can be found in READMEs inside each of the API folders.
+- ユーザー名：`admin`
+- パスワード：`password`
 
-### Setting up your own CI/CD for this project 
+## 開発
 
-The build process for this project is managed by [CircleCI](https://circleci.com/) which is all managed by the config.yml file in the .circleci folder. To get setup you will need to:
+### APIの詳細
 
-### Running CI tests
+チェックの実行、APIのビルド、開発用の追加ドキュメントの詳細については、各APIフォルダ内のREADMEをご参照ください。
 
-Follow these steps to get a CI setup running the tests 
+### このプロジェクトの独自のCI/CDの設定
 
-1. Fork this repository so that you have your own copy
-2. If you haven't already, create a CircleCI login using your GitHub details. This will connect CircleCI to your GitHub profile.
-3. Head to the Projects page in CircleCI, locate the RBP repository and click setup project. 
-4. Go through the steps to for setting up the project, ensuring that it loads in the config.yml from the project (Click use existing config)
+このプロジェクトのビルドプロセスは[CircleCI](https://circleci.com/)によって管理されており、`.circleci`フォルダ内の`config.yml`ファイルで制御されています。設定するには以下の手順が必要です：
 
-If you would like to setup CircleCI to run a full deployment, please drop an issue into the repository.  
+### CIテストの実行
+
+以下の手順に従って、テストを実行するCI環境を設定します。
+
+1. このリポジトリをフォークして、自分のコピーを作成します。
+2. まだの場合は、GitHubの詳細を使用してCircleCIのログインを作成します。これにより、CircleCIがGitHubプロファイルに接続されます。
+3. CircleCIのプロジェクトページに移動し、RBPリポジトリを見つけて「Set Up Project」をクリックします。
+4. プロジェクトの設定手順を進め、プロジェクトからの`config.yml`を読み込むようにします（「Use Existing Config」をクリック）。
+
+完全なデプロイメントを実行するようにCircleCIを設定したい場合は、リポジトリにIssueを投稿してください。
