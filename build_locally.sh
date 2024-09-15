@@ -2,57 +2,57 @@
 
 printf "####### RESTFUL-BOOKER-PLATFORM #######
 ####                               ####
-####       PRE FLIGHT CHECKS       ####
+####       事前チェック             ####
 ####                               ####
 #######################################\n"
 
 
 if ! type -p java; then
-    printf "The Java Runtime Environment is missing. To learn how to install it please visit:
+    printf "Javaランタイム環境が見つかりません。インストール方法については以下をご覧ください：
     https://automationintesting.com/setup/settingupjava\n"
     exit
 fi
 
 if ! type -p javac; then
-    printf "The Java Development Kit is missing. To learn how to install it please visit:
+    printf "Java開発キットが見つかりません。インストール方法については以下をご覧ください：
     https://automationintesting.com/setup/settingupjava\n"
     exit
 fi
 
 if ! type -p mvn; then
-    printf "Maven is missing. To learn how to install it please visit:
+    printf "Mavenが見つかりません。インストール方法については以下をご覧ください：
     https://automationintesting.com/setup/settingupmaven\n"
     exit
 fi
 
 if [[ -z "${JAVA_HOME}" ]]; then
-  printf "JAVA_HOME has not been set. To learn how to set it please visit:
+  printf "JAVA_HOMEが設定されていません。設定方法については以下をご覧ください：
     https://automationintesting.com/setup/settingupmaven\n"
   exit
 fi
 
 if ! node -v; then
-    printf "Node is missing or broken. To learn how to install it please visit:
+    printf "Nodeが見つからないか壊れています。インストール方法については以下をご覧ください：
     https://automationintesting.com/setup/settingupnode\n"
     exit
 fi
 
 if ! type -p npm; then
-    printf "Npm is missing. To learn how to install it please visit:
+    printf "Npmが見つかりません。インストール方法については以下をご覧ください：
     https://automationintesting.com/setup/settingupnode\n"
     exit
 fi
 
 printf "\n####### RESTFUL-BOOKER-PLATFORM #######
 ####                               ####
-####       BUILDING PROJECT        ####
+####       プロジェクトのビルド   ####
 ####                               ####
 #######################################\n"
 
 mvn clean
 
 if [[ -z "${APPLITOOLS_API_KEY}" ]]; then
-  printf "Skipping visual checks because no applitools api key has been set. Assign a key to APPLITOOLS_API_KEY to run visual checks"
+  printf "Applitools APIキーが設定されていないため、ビジュアルチェックをスキップします。ビジュアルチェックを実行するには、APPLITOOLS_API_KEYにキーを設定してください。"
   mvn install
 else
   mvn install -P ci

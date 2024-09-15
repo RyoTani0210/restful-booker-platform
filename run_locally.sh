@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# オプション '-e' を解析し、DO_E2E変数に値を設定
 while getopts e: option
   do
     case "${option}"
@@ -8,14 +9,17 @@ while getopts e: option
   esac
 done
 
+# アプリケーション起動の開始メッセージを表示
 printf "\n####### RESTFUL-BOOKER-PLATFORM #######
 ####                               ####
-####    STARTING APPLICATION...    ####
+####    アプリケーションを起動しています...    ####
 ####                               ####
 #######################################\n\n"
 
+# スクリプト終了時にすべての子プロセスを終了するトラップを設定
 trap "kill 0" EXIT
 
+# 各サービスをバックグラウンドで起動し、ログファイルに出力
 java -jar -Dspring.profiles.active=dev auth/target/restful-booker-platform-auth-*.jar > auth.log &
 java -jar -Dspring.profiles.active=dev booking/target/restful-booker-platform-booking-*.jar > booking.log &
 java -jar -Dspring.profiles.active=dev room/target/restful-booker-platform-room-*.jar > room.log &
@@ -25,30 +29,35 @@ java -jar -Dspring.profiles.active=dev message/target/restful-booker-platform-me
 java -jar -Dspring.profiles.active=dev assets/api/target/restful-booker-platform-assets-*.jar > ui.log &
 java -jar proxy/target/restful-booker-platform-local-proxy-*.jar > proxy.log &
 
+# モニタースクリプトを実行
 node .utilities/monitor/local_monitor.js
 
+# E2Eチェックの開始メッセージを表示
 printf "\n\n####### RESTFUL-BOOKER-PLATFORM #######
 ####                               ####
-####    RUNNING E2E CHECKS         ####
+####    E2Eテストを実行しています         ####
 ####                               ####
 #######################################\n"
 
+# E2Eテストを実行するかどうかを判定
 if [ "$DO_E2E" = "true" ]; then
   cd end-to-end-tests
 
   mvn clean test
 else
-printf "\n          SKIPPING E2E TESTS
- Add -e true argument to run E2E tests\n"
+  printf "\n          E2Eテストをスキップします
+     E2Eテストを実行するには -e true 引数を追加してください\n"
 fi
 
+# アプリケーション準備完了のメッセージを表示
 printf "\n####### RESTFUL-BOOKER-PLATFORM #######
 ####                               ####
-####      APPLICATION READY        ####
+####      アプリケーションが準備完了しました        ####
 ####                               ####
-####         Available at:         ####
+####         利用可能なURL:         ####
 ####     http://localhost:8080     ####
 ####                               ####
 #######################################"
 
+# 全てのバックグラウンドプロセスの終了を待機
 wait
