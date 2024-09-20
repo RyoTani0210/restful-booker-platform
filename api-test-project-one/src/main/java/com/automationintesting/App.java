@@ -10,4 +10,7 @@ public class App
     {
         System.out.println( "Hello World!" );
     }
+    public boolean isWorking() {
+        return true; // 実際のロジックに置き換えてください
+    }
 }
