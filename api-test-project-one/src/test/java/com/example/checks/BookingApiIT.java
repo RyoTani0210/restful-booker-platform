@@ -43,4 +43,23 @@ public class BookingApiIT{
         assertEquals(201, response.getStatusCode());
     }
 
+    @Test
+    public void deleteBookingReturns202(){
+        //予約の削除のテスト
+        //リクエストの結合・パースをする
+
+        BookingDates dates = new BookingDates(
+            LocalDate.of(2021, 2, 1),
+            LocalDate.of( 2021, 2, 3)
+        );
+        Booking payload = new Booking(
+            1,
+            "Mark",
+            "Hunter",
+            true,
+            dates,
+            "a cup of coffee"
+        );
+        
+    }
 }
