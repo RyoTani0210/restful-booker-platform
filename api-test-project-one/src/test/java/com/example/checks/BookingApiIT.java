@@ -7,10 +7,8 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import com.example.payloads.Booking;
-import com.example.payloads.BookingDates;
-import com.example.payloads.BookingResponse;
-import com.example.requests.BookingApi;
+import com.example.payloads.*;
+import com.example.requests.*;
 
 import io.restassured.response.Response;
 
@@ -64,5 +62,19 @@ public class BookingApiIT{
 
         Response bookingResponse = BookingApi.postBooking(payload);
         BookingResponse createBookingResponse = bookingResponse.as(BookingResponse.class);
+        
+        //認証情報を作成
+        Auth auth  = new Auth("admin", "password");
+
+        //認証をとる
+        Response authResponse = AuthApi.postAuth(auth);
+        String authToken = authResponse.getCookie("token");
+
+        Response deleteResponse =BookingApi.deleteBooking(
+            createBookingResponse.getBookingid(),
+            authToken);
+        assertEquals(
+            202,
+            deleteResponse.getStatusCode());
     }
 }
