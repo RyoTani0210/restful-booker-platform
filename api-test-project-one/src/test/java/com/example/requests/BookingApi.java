@@ -7,9 +7,9 @@ import static io.restassured.RestAssured.given;
 import com.example.payloads.Booking;
 
 
-public class BookingApi {
+public class BookingApi extends BaseApi{
     //ベースURLの宣言
-    private static final String apiUrl = "https://automationtesting.online/booking/";
+    private static final String apiUrl = baseUrl + "booking/";
 
     //GETリクエストの送出
     public static Response getBookingSummary(){
