@@ -37,6 +37,10 @@ public class BookingApiIT{
             dates,
             "Breakfast"
         );
+
+        Response response = BookingApi.postBooking(payload);
+
+        assertEquals(201, response.getStatusCode());
     }
 
 }
