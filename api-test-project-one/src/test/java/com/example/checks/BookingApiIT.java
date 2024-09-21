@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import com.example.payloads.Booking;
 import com.example.payloads.BookingDates;
+import com.example.payloads.BookingResponse;
 import com.example.requests.BookingApi;
 
 import io.restassured.response.Response;
@@ -60,6 +61,8 @@ public class BookingApiIT{
             dates,
             "a cup of coffee"
         );
-        
+
+        Response bookingResponse = BookingApi.postBooking(payload);
+        BookingResponse createBookingResponse = bookingResponse.as(BookingResponse.class);
     }
 }
